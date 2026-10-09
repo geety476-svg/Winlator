@@ -1,0 +1,20 @@
+version: "3"
+services:
+  windows:
+    image: dockur/windows
+    container_name: windows
+    devices:
+      - /dev/kvm
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8006:8006
+      - 3389:3389/tcp
+      - 3389:3389/udp
+    environment:
+      VERSION: "11"
+      # 👇 UPGRADED RESOURCE ALLOCATION
+      RAM_SIZE: "10G"
+      CPU_CORES: "3"
+    stop_grace_period: 2m
+    restart: on-failure
